@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { ChangeEvent, useState, FormEvent } from "react";
 import { useWorkoutContext } from "../context/workoutContext";
 
 const WorkoutForm = () => {
@@ -13,7 +13,7 @@ const WorkoutForm = () => {
     const [state, setState] = useState(initialState);
     const [error, setError] = useState(null);
 
-    const onChange = (e) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
         setState({
@@ -22,7 +22,7 @@ const WorkoutForm = () => {
         });
     };
 
-    const onSubmit = async (e) => {
+    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const response = await fetch("/api/workouts", {

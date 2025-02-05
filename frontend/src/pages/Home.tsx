@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
@@ -12,8 +12,9 @@ const Home = () => {
     useEffect(() => {
         const fetchWorkouts = async () => {
             const response = await fetch("/api/workouts");
-
             const data = await response.json();
+
+            console.log(data);
 
             if (response.ok) {
                 dispatch({ type: "SET_WORKOUTS", payload: data.workouts });
@@ -30,7 +31,8 @@ const Home = () => {
                     workouts
                         .sort(
                             (a, b) =>
-                                new Date(b.createdAt) - new Date(a.createdAt)
+                                new Date(b.createdAt).getTime() -
+                                new Date(a.createdAt).getTime()
                         )
                         .map((item) => (
                             <WorkoutDetails key={item._id} workout={item} />

@@ -1,6 +1,7 @@
 import { useWorkoutContext } from "../context/workoutContext";
+import { WorkoutProps } from "../context/workoutContext";
 
-const WorkoutDetails = ({ workout }) => {
+const WorkoutDetails = ({ workout }: { workout: WorkoutProps }) => {
     const { dispatch } = useWorkoutContext();
     const { title, reps, load, _id } = workout;
 
